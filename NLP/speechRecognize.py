@@ -52,4 +52,4 @@ def get_large_audio_transcription(path):
     # return the text for all chunks detected
     return whole_text
 
-get_large_audio_transcription(filename)
+whole_text = get_large_audio_transcription(filename)

@@ -3,6 +3,15 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 import string
 
+
+def traverse_tree(tree, depth=float('inf')):
+    for subtree in tree:
+        if type(subtree) == nltk.tree.Tree:
+            if subtree.height() <= depth:
+                yield subtree.leaves()
+                traverse_tree(subtree)
+
+
 nltk.download("stopwords")
 nltk.download("punkt")
 nltk.download("averaged_perceptron_tagger")
@@ -29,5 +38,8 @@ for tag in pos_tagged:
     elif cat == 'NN':
         nouns.append(word)
 
-print(adjectives)
-print(nouns)
+
+grammar = "NP: {<DT>?<JJ>*<NN>}"
+chunk_parser = nltk.RegexpParser(grammar)
+tree = chunk_parser.parse(pos_tagged)
+chunked_list = list(traverse_tree(tree))
