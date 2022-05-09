@@ -28,13 +28,15 @@ def drawMinArea(original, binarized):
     contours, hierarchy = cv2.findContours(binarized, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     print(len(contours))
     # cv2.drawContours(original, contours[4], -1, (0, 255, 0), 3)
+    cv2.fillPoly(original, pts=[contours[2]], color=(255, 0, 0))
     cv2.fillPoly(original, pts=[contours[3]], color=(255, 0, 0))
     cv2.fillPoly(original, pts=[contours[4]], color=(255, 0, 0))
     cv2.fillPoly(original, pts=[contours[5]], color=(255, 0, 0))
-    cv2.fillPoly(original, pts=[contours[2]], color=(255, 0, 0))
+
     print(cv2.contourArea(contours[5]))
     cv2.imshow('countours', original)
     cv2.waitKey(0)
+
 input = {
     "type": "shirt",
     "color": "white",

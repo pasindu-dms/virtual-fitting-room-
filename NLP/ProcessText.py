@@ -43,3 +43,4 @@ grammar = "NP: {<DT>?<JJ>*<NN>}"
 chunk_parser = nltk.RegexpParser(grammar)
 tree = chunk_parser.parse(pos_tagged)
 chunked_list = list(traverse_tree(tree))
+print(chunked_list)
